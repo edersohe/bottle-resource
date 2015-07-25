@@ -4,7 +4,7 @@ from bottle.ext.resource import BottleResource
 class ExampleResource(BottleResource):
 
     def prepare(self):
-        self.pk_regex = '[0-9]+'
+        self.pk = '<pk:re:[0-9]+>'
 
     def additional_routes(self):
         return [
