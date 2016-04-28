@@ -34,8 +34,8 @@ def resource_module(path, root_app, module):
     if 'show' in module.__dict__:
         app.route('/%s' % pk, 'GET', callback=module.show)
 
-    if 'patch' in module.__dict__:
-        app.route('/%s' % pk, 'PATCH', callback=module.patch)
+    if 'partial_update' in module.__dict__:
+        app.route('/%s' % pk, 'PATCH', callback=module.partial_update)
 
     if 'update' in module.__dict__:
         app.route('/%s' % pk, 'PUT', callback=module.update)
@@ -155,7 +155,7 @@ class BottleResource(object):
         self._app.route('/', 'POST', callback=self.create)
         self._app.route('/%s/edit' % pk, 'GET', callback=self.edit)
         self._app.route('/%s' % pk, 'GET', callback=self.show)
-        self._app.route('/%s' % pk, 'PATCH', callback=self.patch)
+        self._app.route('/%s' % pk, 'PATCH', callback=self.partial_update)
         self._app.route('/%s' % pk, 'PUT', callback=self.update)
         self._app.route('/%s' % pk, 'DELETE', callback=self.destroy)
 
@@ -188,7 +188,7 @@ class BottleResource(object):
     def show(self, *args):
         abort(404)
 
-    def patch(self, *args):
+    def partial_update(self, *args):
         abort(404)
 
     def update(self, *args):
